@@ -9,6 +9,12 @@ Tested with Go 1.24.0, Bun 1.2.2, Deno 2.1.10, Expr [v1.16.9](https://github.com
 1. Open this repo in devcontainer, e.g. using Github Codespaces.
    Type or copy/paste following commands to devcontainer's terminal.
 
+2. Install Deno (also used as static HTTP server, as Ubuntu Noble has no Python installed by default):
+
+```sh
+curl -fsSL https://deno.land/install.sh | bash -s -- --yes
+```
+
 ### Building
 
 1. `cd` into the folder of this example:
@@ -40,7 +46,7 @@ cp $(go env GOROOT)/lib/wasm/wasm_exec.js ./
 1. Run simple HTTP server to temporarily publish project to Web:
 
 ```sh
-python3 -m http.server
+~/.deno/bin/deno run --allow-net --allow-read jsr:@std/http/file-server
 ```
 
 Codespace will show you "Open in Browser" button. Just click that button or
@@ -69,13 +75,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ### Test with Deno
 
-1. Install Deno:
-
-```sh
-curl -fsSL https://deno.land/x/install/install.sh | sh
-```
-
-2. Run with Deno:
+1. Run with Deno:
 
 ```sh
 ~/.deno/bin/deno run --allow-read --allow-net deno.js
